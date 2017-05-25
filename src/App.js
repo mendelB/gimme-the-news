@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Thumbnail className="logo" src="https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2017/05/Magikarp-Jump.jpg" alt="242x200">
+        <Thumbnail className="news-thumbnail" src="https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2017/05/Magikarp-Jump.jpg" alt="242x200">
           <h3>Magikarp Jump, the latest mobile Pokémon game, is out today</h3>
           <p>The Pokémon Company just released Magikarp Jump,
             a mobile game starring the world's least-loved finned Pokémon.
