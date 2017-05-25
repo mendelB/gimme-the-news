@@ -13,6 +13,7 @@ class App extends Component {
             To use the developer's own words, \"What is this world coming ...</p>
           <p>
             <a 
+              target="_blank"
               href="https://thenextweb.com/gaming/2017/05/25/magikarp-jump-latest-mobile-pokemon-game-today/">
                 <Button bsStyle="primary">Full Article</Button></a>
           </p>
