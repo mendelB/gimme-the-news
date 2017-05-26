@@ -10,7 +10,7 @@ class SourcesBar extends Component {
     super(props);
 
     this.state = {
-      activeKey: "1"
+      activeKey: "0"
     }
 
     this.handleSelect = this.handleSelect.bind(this);
@@ -27,16 +27,11 @@ class SourcesBar extends Component {
         <Row className="clearfix">
           <Col sm={2}>
             <Nav bsStyle="pills" stacked>
-              <NavItem eventKey="1">
-                Tab 1
-              </NavItem>
-              <NavItem eventKey="2">
-                Tab 2
-              </NavItem>
+              {sources.map((source, index) => <NavItem eventKey={String(index)}> {source} </NavItem>)}
             </Nav>
           </Col>
           <Col sm={10}>
-            <HeadlineRenderer newsSource={sources[Number(this.state.activeKey) - 1]}/>
+            <HeadlineRenderer newsSource={sources[Number(this.state.activeKey)]}/>
           </Col>
         </Row>
     </Tab.Container>
