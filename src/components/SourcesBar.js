@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HeadlineRenderer from './HeadlineRenderer';
+import newsFetcher from '../lib/NewsFetcher'
 import { Nav, NavItem, Tab, Row, Col  } from 'react-bootstrap';
 import '../App.css';
 
@@ -10,10 +11,16 @@ class SourcesBar extends Component {
     super(props);
 
     this.state = {
-      activeKey: "0"
+      activeKey: "0",
+      sources: []
     }
 
     this.handleSelect = this.handleSelect.bind(this);
+  }
+
+  componentDidMount() {
+    newsFetcher.getSources()
+    .then(sources => this.setState({sources: sources}))
   }
 
   handleSelect(eventKey) {
@@ -27,11 +34,11 @@ class SourcesBar extends Component {
         <Row className="clearfix">
           <Col sm={2}>
             <Nav bsStyle="pills" stacked>
-              {sources.map((source, index) => <NavItem eventKey={String(index)}> {source} </NavItem>)}
+              {this.state.sources.map((source, index) => <NavItem eventKey={String(index)}> {source.name} </NavItem>)}
             </Nav>
           </Col>
           <Col sm={10}>
-            <HeadlineRenderer newsSource={sources[Number(this.state.activeKey)]}/>
+            <HeadlineRenderer newsSource={sources[Number(this.state.activeKey)].id}/>
           </Col>
         </Row>
     </Tab.Container>
