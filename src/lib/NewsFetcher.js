@@ -26,7 +26,7 @@ newsFetcher.getSources = () => {
 		.then(res => res.json())
 		.then(res => configSources(res.sources))
 	} else {
-		return cachedSources
+		return Promise.resolve(cachedSources)
 	}
 }
 
