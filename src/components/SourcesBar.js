@@ -4,8 +4,6 @@ import newsFetcher from '../lib/NewsFetcher'
 import { Nav, NavItem, Tab, Row, Col  } from 'react-bootstrap';
 import '../App.css';
 
-const sources = ["the-next-web", "bbc-news", "bloomberg"]
-
 class SourcesBar extends Component {
   constructor(props) {
     super(props);
