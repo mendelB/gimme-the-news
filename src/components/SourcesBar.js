@@ -30,7 +30,7 @@ class SourcesBar extends Component {
   render() {
     return (
       <div>
-      <Tab.Container id="left-tabs-example" defaultActiveKey="1" onSelect={this.handleSelect}>
+      <Tab.Container id="left-tabs-example" defaultActiveKey="0" onSelect={this.handleSelect}>
         <Row className="clearfix">
           <Col sm={2}>
             <Nav bsStyle="pills" stacked>
@@ -38,7 +38,10 @@ class SourcesBar extends Component {
             </Nav>
           </Col>
           <Col sm={10}>
-            <HeadlineRenderer newsSource={sources[Number(this.state.activeKey)].id}/>
+            {this.state.sources.length > 0 ?
+              <HeadlineRenderer newsSource={this.state.sources[Number(this.state.activeKey)].id}/>
+            : "Loading..."
+            }
           </Col>
         </Row>
     </Tab.Container>
