@@ -23,9 +23,17 @@ class HeadlineRenderer extends Component {
   }
 
   render() {
+    let arr = this.state.news.map(article => <NewsHeadline image={article.urlToImage} headline={article.title} description={article.description} articleLink={article.url}/>)
+    let arrays = []
+    let size = 3  
+    while (arr.length > 0) {
+      arrays.push(arr.splice(0, size));
+    }
     return (
       <div>
-        {this.state.news.map(article => <NewsHeadline image={article.urlToImage} headline={article.title} description={article.description} articleLink={article.url}/>)}
+        {
+          arrays.map(row => <div className="row">{row}</div>)
+        }
       </div>
     );
   }
