@@ -11,3 +11,20 @@
 .news-thumbnail img:hover {
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
+
+.news-sources {
+	position: fixed;
+	height: 750px;
+	overflow:scroll;
+}
+
+.news-headline {
+	max-height: 480px;
+	/*overflow: scroll;*/
+}
+
+.description {
+	min-height: 50px;
+	max-height: 50px;
+	overflow:auto;
+}
