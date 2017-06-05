@@ -30,8 +30,8 @@ class SourcesBar extends Component {
       <div>
       <Tab.Container id="left-tabs-example" defaultActiveKey="0" onSelect={this.handleSelect}>
         <Row className="clearfix">
-          <Col sm={2}>
-            <Nav bsStyle="pills" stacked>
+          <Col sm={2} className="s-container">
+            <Nav bsStyle="pills" stacked className="news-sources">
               {this.state.sources.map((source, index) => <NavItem eventKey={String(index)}> {source.name} </NavItem>)}
             </Nav>
           </Col>
