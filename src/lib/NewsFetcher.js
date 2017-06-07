@@ -1,6 +1,7 @@
 let newsFetcher = {}
 let cachedSources = []
 let cachedNews = {}
+let mySources = []
 const BASE = "https://newsapi.org/v1"
 const SOURCES_URL = BASE + "/sources?"
 const NEWS = BASE + "/articles?source="
@@ -38,6 +39,8 @@ newsFetcher.getNews = source => {
 	.then(res => res.json())
 	.then(json => handleNews(json))
 }
+
+newsFetcher.mySources = () => mySources
 
 
 export default newsFetcher;
