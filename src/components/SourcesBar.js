@@ -10,15 +10,18 @@ class SourcesBar extends Component {
 
     this.state = {
       activeKey: "0",
-      sources: []
+      sources: [],
+      mySources: newsFetcher.mySources()
     }
 
     this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
-    newsFetcher.getSources()
-    .then(sources => this.setState({sources: sources}))
+    if (!this.state.mySources.length) {
+      newsFetcher.getSources()
+      .then(sources => this.setState({sources: sources}))
+    }
   }
 
   handleSelect(eventKey) {
@@ -26,18 +29,21 @@ class SourcesBar extends Component {
   }
 
   render() {
+    let sources = this.state.mySources.length ? this.state.mySources : this.state.sources
     return (
       <div>
       <Tab.Container id="left-tabs-example" defaultActiveKey="0" onSelect={this.handleSelect}>
         <Row className="clearfix">
           <Col sm={2} className="s-container">
             <Nav bsStyle="pills" stacked className="news-sources">
-              {this.state.sources.map((source, index) => <NavItem eventKey={String(index)}> {source.name} </NavItem>)}
+              {
+                sources.map((source, index) => <NavItem eventKey={String(index)}> {source.name} </NavItem>)
+              }
             </Nav>
           </Col>
           <Col sm={10}>
-            {this.state.sources.length > 0 ?
-              <HeadlineRenderer newsSource={this.state.sources[Number(this.state.activeKey)].id}/>
+            {sources.length > 0 ?
+              <HeadlineRenderer newsSource={sources[Number(this.state.activeKey)].id}/>
             : "Loading..."
             }
           </Col>
