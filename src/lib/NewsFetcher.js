@@ -12,6 +12,7 @@ let configSources = sources => {
 		let sourceObj = { name: source.name, id: source.id }
 		cachedSources.push(sourceObj)
 	})
+	localStorage.setItem('cachedSources', JSON.stringify(cachedSources))
 	return cachedSources
 }
 
@@ -21,12 +22,14 @@ let handleNews = (news) => {
 }
 
 newsFetcher.getSources = () => {
-	if (cachedSources.length < 1) {
+	let storage = localStorage.getItem('cachedSources');
+	if (!storage) {
 		console.log("Making API Call!")
 		return fetch(SOURCES_URL + API_TAIL)
 		.then(res => res.json())
 		.then(res => configSources(res.sources))
 	} else {
+		cachedSources = JSON.parse(storage)
 		return Promise.resolve(cachedSources)
 	}
 }
