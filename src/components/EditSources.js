@@ -5,10 +5,28 @@ import { Nav, NavItem, Tab, Row, Col, FormGroup, Checkbox  } from 'react-bootstr
 import '../App.css';
 
 class EditSources extends Component {
+	constructor(props) {
+    super(props);
+
+    this.state = {
+      sources: []
+    }
+
+  }
+
+	componentDidMount() {
+    newsFetcher.getSources()
+    .then(sources => this.setState({sources: sources}))
+  }
+
   render() {
     return (
-      <div>
-      </div>
+      <ul>
+      	{ this.state.sources.map( source => {
+      			return <li>{source.name}</li>
+      		})
+      	}
+      </ul>
     );
   }
 }
