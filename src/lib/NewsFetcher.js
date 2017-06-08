@@ -41,6 +41,7 @@ newsFetcher.getNews = source => {
 }
 
 newsFetcher.mySources = () => mySources
+newsFetcher.updateMySources = (sources) => mySources = sources
 
 
 export default newsFetcher;
