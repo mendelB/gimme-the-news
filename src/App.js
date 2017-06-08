@@ -16,7 +16,7 @@ class App extends Component {
 
 	editSources(e) {
 		e.preventDefault()
-		this.setState({editing: true})
+		this.setState({editing: this.state.editing ? false : true})
 	}
 
   render() {
@@ -29,7 +29,7 @@ class App extends Component {
 			      </Navbar.Brand>
 			    </Navbar.Header>
 			    <Nav>
-			      <NavItem eventKey={1} onClick={this.editSources}>Edit News Sources</NavItem>
+			      <NavItem eventKey={1} onClick={this.editSources}>{!this.state.editing ? "Edit News Sources" : "Done"}</NavItem>
 			    </Nav>
 			  </Navbar>
         {this.state.editing ? <EditSources/> : <SourcesBar/>}
