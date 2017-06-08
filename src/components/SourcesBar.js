@@ -37,7 +37,7 @@ class SourcesBar extends Component {
           <Col sm={2} className="s-container">
             <Nav bsStyle="pills" stacked className="news-sources">
               {
-                sources.map((source, index) => <NavItem eventKey={String(index)}> {source.name} </NavItem>)
+                sources.map((source, index) => <NavItem key={index} eventKey={String(index)}> {source.name} </NavItem>)
               }
             </Nav>
           </Col>
