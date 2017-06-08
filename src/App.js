@@ -25,7 +25,7 @@ class App extends Component {
       	<Navbar>
 			    <Navbar.Header>
 			      <Navbar.Brand>
-			        <a href="#">React-Bootstrap</a>
+			        React-Bootstrap
 			      </Navbar.Brand>
 			    </Navbar.Header>
 			    <Nav>
