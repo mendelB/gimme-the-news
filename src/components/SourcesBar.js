@@ -11,17 +11,17 @@ class SourcesBar extends Component {
     this.state = {
       activeKey: "0",
       sources: [],
-      mySources: newsFetcher.mySources()
     }
 
     this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
-    if (!this.state.mySources.length) {
-      newsFetcher.getSources()
-      .then(sources => this.setState({sources: sources}))
-    }
+    newsFetcher.getSources()
+    .then(sources => {
+      let mySources = sources.filter(source => source.favored)
+      this.setState({sources: (mySources.length ? mySources : sources)})
+    })
   }
 
   handleSelect(eventKey) {
@@ -29,7 +29,7 @@ class SourcesBar extends Component {
   }
 
   render() {
-    let sources = this.state.mySources.length ? this.state.mySources : this.state.sources
+    let sources = this.state.sources
     return (
       <div>
       <Tab.Container id="left-tabs-example" defaultActiveKey="0" onSelect={this.handleSelect}>

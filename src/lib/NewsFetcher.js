@@ -1,7 +1,6 @@
 let newsFetcher = {}
 let cachedSources = []
 let cachedNews = {}
-let mySources = []
 const BASE = "https://newsapi.org/v1"
 const SOURCES_URL = BASE + "/sources?"
 const NEWS = BASE + "/articles?source="
@@ -9,7 +8,7 @@ const API_TAIL = "&apiKey=" + process.env.REACT_APP_API_KEY
 
 let configSources = sources => {
 	sources.forEach(source => {
-		let sourceObj = { name: source.name, id: source.id }
+		let sourceObj = { name: source.name, id: source.id, favored: false }
 		cachedSources.push(sourceObj)
 	})
 	localStorage.setItem('cachedSources', JSON.stringify(cachedSources))
@@ -43,8 +42,13 @@ newsFetcher.getNews = source => {
 	.then(json => handleNews(json))
 }
 
-newsFetcher.mySources = () => mySources
-newsFetcher.updateMySources = (sources) => mySources = sources
+newsFetcher.mySources = () => {
+	return newsFetcher.getSources().then((sources => sources.filter(s => s.favored ) ))
+}
+
+newsFetcher.updateSources = (sources) => {
+	localStorage.setItem('cachedSources', JSON.stringify(sources))
+}
 
 
 export default newsFetcher;

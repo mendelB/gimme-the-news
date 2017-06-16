@@ -9,7 +9,6 @@ class EditSources extends Component {
 
     this.state = {
       sources: [],
-      mySources: newsFetcher.mySources()
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -21,22 +20,21 @@ class EditSources extends Component {
   }
 
   handleChange(e) {
-  	let source = this.state.sources[Number(e.target.value)]
+    let source = this.state.sources[Number(e.target.value)]
   	let mySources
   	if (e.target.checked) {
-  		mySources = this.state.mySources.concat(source)
+      source.favored = true
   	} else {
-  		mySources = this.state.mySources.filter(s => s!== source)
+      source.favored = false
   	}
-  	this.setState({mySources: mySources})
-  	newsFetcher.updateMySources(mySources)
+    newsFetcher.updateSources(this.state.sources)
   }
 
   render() {
     return (
       <form>
       	{ this.state.sources.map( (source, index) => {
-      			return <Checkbox value={index} checked={this.state.mySources.includes(source) ? true : false} onChange={this.handleChange}>{source.name}</Checkbox>
+      			return <Checkbox value={index} checked={source.favored} onChange={this.handleChange}>{source.name}</Checkbox>
       		})
       	}
       </form>
