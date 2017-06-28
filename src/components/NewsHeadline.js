@@ -4,7 +4,7 @@ import '../App.css';
 
 function NewsHeadline(props) {
   return (
-    <Col md={4} xs={6} className="news-headline">
+    <Col md={4} xs={10} className="news-headline">
       <Thumbnail className="news-thumbnail" src={props.image} alt="242x200">
         <h3>{props.headline}</h3>
         <p className="description">{props.description.split(" ").splice(0, 13).join(" ")+ "..."}</p>

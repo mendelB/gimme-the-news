@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import newsFetcher from '../lib/NewsFetcher'
-import { Checkbox  } from 'react-bootstrap';
+import { Checkbox, Col  } from 'react-bootstrap';
 import '../App.css';
 
 class EditSources extends Component {
@@ -33,12 +33,14 @@ class EditSources extends Component {
 
   render() {
     return (
-      <form>
-      	{ this.state.sources.map( (source, index) => {
-      			return <Checkbox value={index} key={index} checked={source.favored} onChange={this.handleChange}>{source.name}</Checkbox>
-      		})
-      	}
-      </form>
+      <Col xsOffset={4}>
+        <form>
+        	{ this.state.sources.map( (source, index) => {
+        			return <Checkbox value={index} key={index} checked={source.favored} onChange={this.handleChange}>{source.name}</Checkbox>
+        		})
+        	}
+        </form>
+      </Col>
     );
   }
 }

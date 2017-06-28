@@ -34,14 +34,14 @@ class SourcesBar extends Component {
       <div>
       <Tab.Container id="left-tabs-example" defaultActiveKey="0" onSelect={this.handleSelect}>
         <Row className="clearfix">
-          <Col sm={2} xs={1} className="s-container">
+          <Col sm={2} xs={4} className="s-container">
             <Nav bsStyle="pills" stacked className="news-sources">
               {
                 sources.map((source, index) => <NavItem key={index} eventKey={String(index)}> {source.name} </NavItem>)
               }
             </Nav>
           </Col>
-          <Col sm={10} xs={8} xsOffset={2}>
+          <Col sm={10} xs={7} mdOffset={0} xsOffset={5}>
             {sources.length > 0 ?
               <HeadlineRenderer newsSource={sources[Number(this.state.activeKey)].id}/>
             : "Loading..."
