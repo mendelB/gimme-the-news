@@ -18,12 +18,18 @@ class HeadlineRenderer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.setState({news: []})
     newsFetcher.getNews(nextProps.newsSource)
     .then(news => this.setState({news: news})) 
   }
 
   render() {
-    let arr = this.state.news.map((article, index) => <NewsHeadline key={index} image={article.urlToImage} headline={article.title} description={article.description} articleLink={article.url}/>)
+    let arr = this.state.news.map((article, index) =>
+      <NewsHeadline 
+        key={index} image={article.urlToImage} headline={article.title}
+        description={article.description} articleLink={article.url}
+      />
+    )
     let arrays = []
     let size = 3  
     while (arr.length > 0) {
@@ -32,7 +38,8 @@ class HeadlineRenderer extends Component {
     return (
       <div>
         {
-          arrays.map((row, index) => <div key={index} className="row">{row}</div>)
+          arrays.length ? arrays.map((row, index) => <div key={index} className="row">{row}</div>) :
+          'Loading...'
         }
       </div>
     );
