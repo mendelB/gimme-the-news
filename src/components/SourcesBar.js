@@ -25,6 +25,7 @@ class SourcesBar extends Component {
   }
 
   handleSelect(eventKey) {
+    window.scroll(0,0)
     this.setState({activeKey: eventKey})
   }
 
