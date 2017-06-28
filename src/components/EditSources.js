@@ -20,21 +20,22 @@ class EditSources extends Component {
   }
 
   handleChange(e) {
-    let source = this.state.sources[Number(e.target.value)]
-  	let mySources
+    let sources = this.state.sources.slice()
+    let source = sources[Number(e.target.value)]
   	if (e.target.checked) {
       source.favored = true
   	} else {
       source.favored = false
   	}
-    newsFetcher.updateSources(this.state.sources)
+    newsFetcher.updateSources(sources)
+    this.setState(sources)
   }
 
   render() {
     return (
       <form>
       	{ this.state.sources.map( (source, index) => {
-      			return <Checkbox value={index} checked={source.favored} onChange={this.handleChange}>{source.name}</Checkbox>
+      			return <Checkbox value={index} key={index} checked={source.favored} onChange={this.handleChange}>{source.name}</Checkbox>
       		})
       	}
       </form>
