@@ -25,7 +25,7 @@ class App extends Component {
       	<Navbar>
 			    <Navbar.Header>
 			      <Navbar.Brand>
-			        React-Bootstrap
+			        Gimme the News
 			      </Navbar.Brand>
 			    </Navbar.Header>
 			    <Nav>
