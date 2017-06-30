@@ -3,10 +3,10 @@
 }
 
 .news-thumbnail {
-  /*border-radius: 15%;*/
+  border-radius: 15%;
   /*border: 1px solid #ddd;*/
-  width: 100%;
-  height: 300px;
+  width: 50%;
+  height: 100px;
 }
 
 .news-thumbnail:hover {
@@ -20,8 +20,8 @@
 }
 
 .news-headline {
-	max-height: 480px;
-  min-height: 450px;
+	max-height: 280px;
+  min-height: 250px;
   border: 1px solid #ddd;
 	/*overflow: scroll;*/
 
