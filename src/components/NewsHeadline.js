@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
-import { Thumbnail, Button, Col } from 'react-bootstrap';
 import '../App.css';
 
 function NewsHeadline(props) {
   return (
-    <Col md={4} xs={10} className="news-headline">
-      <Thumbnail className="news-thumbnail" src={props.image} alt="242x200">
-        <h3>{props.headline}</h3>
-        <p className="description">{props.description.split(" ").splice(0, 13).join(" ")+ "..."}</p>
-        <p>
-          <a 
-            target="_blank"
-            href={props.articleLink}>
-              <Button bsStyle="primary">Full Article</Button></a>
-        </p>
-      </Thumbnail>
-    </Col>
+    <div className="col-md-6 col-lg-4 col-xs-12 news-headline">
+      <div className="card text-center">
+        <img className="card-img-top news-thumbnail" src={props.image} alt="Card image cap"/>
+        <div className="card-block">
+          <h4 className="card-title">{props.headline}</h4>
+          <p className="card-text">{props.description.split(" ").splice(0, 13).join(" ")+ "..."}</p>
+          <a target="_blank" href={props.articleLink} className="btn btn-primary">Full Article</a>
+        </div>
+      </div>
+    </div>
   );
 }
 
