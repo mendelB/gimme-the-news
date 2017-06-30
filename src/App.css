@@ -3,9 +3,10 @@
 }
 
 .news-thumbnail {
-  border-radius: 15%;
-  border: 1px solid #ddd;
-  width: 250px;
+  /*border-radius: 15%;*/
+  /*border: 1px solid #ddd;*/
+  width: 100%;
+  height: 300px;
 }
 
 .news-thumbnail:hover {
@@ -21,13 +22,28 @@
 .news-headline {
 	max-height: 480px;
   min-height: 450px;
+  border: 1px solid #ddd;
 	/*overflow: scroll;*/
+
+}
+.news-headline:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.headline {
+  min-height: 40px;
 }
 
 .description {
 	min-height: 50px;
 	max-height: 50px;
 	overflow:auto;
+}
+
+.article-link {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%; width: 100%;
 }
 
 @media only screen and (max-width: 768px) {
