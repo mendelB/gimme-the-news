@@ -30,17 +30,9 @@ class HeadlineRenderer extends Component {
         description={article.description} articleLink={article.url}
       />
     )
-    let arrays = []
-    let size = 3  
-    while (arr.length > 0) {
-      arrays.push(arr.splice(0, size));
-    }
     return (
       <div>
-        {
-          arrays.length ? arrays.map((row, index) => <div key={index} className="row">{row}</div>) :
-          'Loading...'
-        }
+        { arr }
       </div>
     );
   }
