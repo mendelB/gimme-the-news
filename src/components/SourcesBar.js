@@ -42,7 +42,7 @@ class SourcesBar extends Component {
               }
             </Nav>
           </Col>
-          <Col sm={10} xs={7} mdOffset={0} xsOffset={5}>
+          <Col sm={10} xs={7} mdOffset={0} xsOffset={4}>
             {sources.length > 0 ?
               <HeadlineRenderer newsSource={sources[Number(this.state.activeKey)].id}/>
             : "Loading..."
