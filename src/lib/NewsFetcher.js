@@ -1,6 +1,7 @@
 let newsFetcher = {}
 let cachedSources = []
 let cachedNews = {}
+if (!localStorage.getItem('readingList')) localStorage.setItem('readingList', JSON.stringify([]));
 const BASE = "https://newsapi.org/v1"
 const SOURCES_URL = BASE + "/sources?"
 const NEWS = BASE + "/articles?source="
@@ -49,6 +50,17 @@ newsFetcher.mySources = () => {
 
 newsFetcher.updateSources = (sources) => {
 	localStorage.setItem('cachedSources', JSON.stringify(sources))
+}
+
+newsFetcher.addToReadingList = (newsItem) => {
+	let readingList = JSON.parse(localStorage.getItem('readingList'));
+	readingList.push(newsItem)
+	localStorage.setItem('readingList', JSON.stringify(readingList))
+	console.log(readingList)
+}
+
+newsFetcher.getReadingList = () => {
+	return JSON.parse(localStorage.getItem('readingList'))
 }
 
 

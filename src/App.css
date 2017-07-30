@@ -3,6 +3,7 @@
 }
 
 .news-thumbnail {
+  margin-top: 5px;
   border-radius: 15%;
   /*border: 1px solid #ddd;*/
   width: 50%;
@@ -20,8 +21,8 @@
 }
 
 .news-headline {
-	max-height: 280px;
-  min-height: 250px;
+	max-height: 300px;
+  min-height: 280px;
   border: 1px solid #ddd;
 	/*overflow: scroll;*/
 
@@ -40,11 +41,19 @@
 	overflow:auto;
 }
 
-.article-link {
+.links {
+  text-align: center;
+}
+
+.links .btn {
+  margin: 5px;
+}
+
+/*.article-link {
   position: absolute;
   top: 0; left: 0;
   height: 100%; width: 100%;
-}
+}*/
 
 @media only screen and (max-width: 768px) {
     h3 {
