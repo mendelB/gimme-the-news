@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import '../App.css';
 
 function NewsHeadline(props) {
-  let handleClick = (e) => {
-    props.readLater(props.index)
-  }
+  let handleClick = props.readLater ?
+    {
+      handler: (e) => props.readLater(props.index),
+      text: "Read Later"
+    }
+  :
+    { 
+      handler: (e) => props.removeFromReadingList(props.index),
+      text: "Remove From Reading List" 
+    }
+
   return (
     <div className="col-sm-5 col-md-4 col-xs-12 news-headline">
       <div className="card card-outline-info text-center">
@@ -16,7 +24,7 @@ function NewsHeadline(props) {
       </div>
       <div className="links">
         <a target="_blank" href={props.articleLink} className="btn btn-primary">Read Article</a>
-        <button className="btn btn-info" onClick={handleClick}>Read Later</button>
+        <button className="btn btn-info" onClick={handleClick.handler}>{handleClick.text}</button>
       </div>
     </div>
   );

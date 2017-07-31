@@ -3,7 +3,7 @@ import NewsHeadline from './NewsHeadline';
 import newsFetcher from '../lib/NewsFetcher'
 import '../App.css';
 
-class HeadlineRenderer extends Component {
+class ReadingListRenderer extends Component {
   constructor(props) {
     super(props);
     
@@ -11,22 +11,20 @@ class HeadlineRenderer extends Component {
       news: []
     }
 
-    this.readLater = this.readLater.bind(this)
+    this.removeFromReadingList = this.removeFromReadingList.bind(this)
   }
 
   componentDidMount() {
-    newsFetcher.getNews(this.props.newsSource)
-    .then(news => this.setState({news: news}))
+    this.setState({news: newsFetcher.getReadingList()})
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({news: []})
-    newsFetcher.getNews(nextProps.newsSource)
-    .then(news => this.setState({news: news})) 
+    this.setState({news: newsFetcher.getReadingList()})
   }
 
-  readLater(id) {
-    newsFetcher.addToReadingList(this.state.news[id])
+  removeFromReadingList(id) {
+    const news = newsFetcher.removeFromReadingList(this.state.news[id])
+    this.setState({news})
   }
 
   render() {
@@ -34,7 +32,7 @@ class HeadlineRenderer extends Component {
       <NewsHeadline 
         key={index} index={index} image={article.urlToImage} headline={article.title}
         description={article.description} articleLink={article.url}
-        readLater={this.readLater}
+        removeFromReadingList={this.removeFromReadingList}
       />
     )
     return (
@@ -45,4 +43,4 @@ class HeadlineRenderer extends Component {
   }
 }
 
-export default HeadlineRenderer;
+export default ReadingListRenderer;

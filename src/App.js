@@ -1,49 +1,44 @@
 import React, { Component } from 'react';
 import SourcesBar from './components/SourcesBar';
 import EditSources from './components/EditSources';
+import ReadingListRenderer from './components/ReadingListRenderer';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem  } from 'react-bootstrap';
 import './App.css';
 
 
-class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			editing: false,
-			readingList: false
-		}
-		this.editSources = this.editSources.bind(this)
-		this.readingList = this.readingList.bind(this)
-	}
-
-	editSources(e) {
-		e.preventDefault()
-		this.setState({editing: this.state.editing ? false : true})
-	}
-
-	readingList() {
-		debugger
-		this.setState({readingList: true})
-	}
-
-  render() {
-    return (
-      <div>
-      	<Navbar>
-			    <Navbar.Header>
-			      <Navbar.Brand>
-			        Gimme the News
-			      </Navbar.Brand>
-			    </Navbar.Header>
-			    <Nav>
-			      <NavItem eventKey={1} onClick={this.editSources}>{!this.state.editing ? "Edit News Sources" : "Done"}</NavItem>
-			      <NavItem eventKey={2} onClick={this.readingList}>Reading List</NavItem>
-			    </Nav>
-			  </Navbar>
-        {this.state.editing ? <EditSources/> : <SourcesBar readingList={this.state.readingList}/>}
-      </div>
-    );
-  }
+function App(props) {
+  return (
+    <div>
+      <Router>
+      	<div>
+	      	<Navbar>
+				    <Navbar.Header>
+				      <Navbar.Brand>
+				        Gimme the News
+				      </Navbar.Brand>
+				    </Navbar.Header>
+				    <Nav>
+				    	<li role="presentation">
+				      	<Link role="button" to="/">Home</Link>
+				      </li>
+				      <li role="presentation">
+				      	<Link role="button" to="/edit-sources">Edit Sources</Link>
+				      </li>
+				      <li role="presentation">
+	        			<Link role="button" to="/reading-list">Reading List</Link>
+	        		</li>
+				    </Nav>
+				  </Navbar>
+			    <div>
+			      <Route exact path="/" component={SourcesBar}/>
+			      <Route path="/edit-sources" component={EditSources}/>
+			      <Route path="/reading-list" component={ReadingListRenderer}/>
+			    </div>
+		    </div>
+		  </Router>
+    </div>
+  );
 }
 
 export default App;
