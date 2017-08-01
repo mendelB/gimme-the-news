@@ -8,10 +8,12 @@ class HeadlineRenderer extends Component {
     super(props);
     
     this.state = {
-      news: []
+      news: [],
+      readingList: newsFetcher.getReadingList(),
     }
 
     this.readLater = this.readLater.bind(this)
+    this.removeFromReadingList = this.removeFromReadingList.bind(this)
   }
 
   componentDidMount() {
@@ -26,17 +28,24 @@ class HeadlineRenderer extends Component {
   }
 
   readLater(id) {
-    newsFetcher.addToReadingList(this.state.news[id])
+    const readingList = newsFetcher.addToReadingList(this.state.news[id])
+    this.setState({readingList})
+  }
+
+  removeFromReadingList(id) {
+    const readingList = newsFetcher.removeFromReadingList(this.state.news[id])
+    this.setState({readingList})
   }
 
   render() {
-    let arr = this.state.news.map((article, index) =>
-      <NewsHeadline 
+    let arr = this.state.news.map((article, index) => {
+      const isInReadingList = this.state.readingList.find(a => a.title === article.title)
+      return <NewsHeadline 
         key={index} index={index} image={article.urlToImage} headline={article.title}
         description={article.description} articleLink={article.url}
-        readLater={this.readLater}
+        readLater={this.readLater} removeFromReadingList={this.removeFromReadingList} isInReadingList={isInReadingList}
       />
-    )
+    })
     return (
       <div>
         { arr }

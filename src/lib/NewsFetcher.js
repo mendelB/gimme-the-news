@@ -56,7 +56,7 @@ newsFetcher.addToReadingList = (newsItem) => {
 	let readingList = JSON.parse(localStorage.getItem('readingList'));
 	readingList.push(newsItem)
 	localStorage.setItem('readingList', JSON.stringify(readingList))
-	console.log(readingList)
+	return readingList
 }
 
 newsFetcher.removeFromReadingList = (newsItem) => {

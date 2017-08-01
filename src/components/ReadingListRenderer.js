@@ -8,18 +8,10 @@ class ReadingListRenderer extends Component {
     super(props);
     
     this.state = {
-      news: []
+      news: newsFetcher.getReadingList()
     }
 
     this.removeFromReadingList = this.removeFromReadingList.bind(this)
-  }
-
-  componentDidMount() {
-    this.setState({news: newsFetcher.getReadingList()})
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({news: newsFetcher.getReadingList()})
   }
 
   removeFromReadingList(id) {
@@ -32,12 +24,12 @@ class ReadingListRenderer extends Component {
       <NewsHeadline 
         key={index} index={index} image={article.urlToImage} headline={article.title}
         description={article.description} articleLink={article.url}
-        removeFromReadingList={this.removeFromReadingList}
+        removeFromReadingList={this.removeFromReadingList} isInReadingList={true}
       />
     )
     return (
       <div>
-        { arr }
+        { arr.length ? arr : <h3 id="nothing-here">Looks like there's nothing here.</h3> }
       </div>
     );
   }

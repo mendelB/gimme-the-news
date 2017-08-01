@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import '../App.css';
 
 function NewsHeadline(props) {
-  let handleClick = props.readLater ?
-    {
-      handler: (e) => props.readLater(props.index),
-      text: "Read Later"
-    }
-  :
+  let handleClick = props.isInReadingList ?
     { 
       handler: (e) => props.removeFromReadingList(props.index),
       text: "Remove From Reading List" 
+    }
+  :
+    {
+      handler: (e) => props.readLater(props.index),
+      text: "Read Later"
     }
 
   return (

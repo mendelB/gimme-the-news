@@ -49,6 +49,10 @@
   margin: 5px;
 }
 
+#nothing-here {
+  text-align: center;
+}
+
 /*.article-link {
   position: absolute;
   top: 0; left: 0;
